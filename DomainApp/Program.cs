@@ -54,17 +54,17 @@ namespace DomainApp
             Console.WriteLine("Стоимость " + callZeroCostInternal.Cost);
             Console.WriteLine("Баланс " + simCard.Balance.Money);
 
-            // Try internal call (10 cost)
-            Console.WriteLine("Звоню на внутренний номер, 32 секунды, стоимость 10");
-            Console.WriteLine("Баланс " + simCard.Balance.Money);
-            callService.DoCall("88005553535", "88005553536");
-            Thread.Sleep(32000);
-            Call call10CostInternal = callRepo.All().SingleOrDefault(x => x._phoneNumberFrom == "88005553535" && x.State == CallState.InProgress);
-            callService.EndCall(call10CostInternal);
+            //// Try internal call (10 cost)
+            //Console.WriteLine("Звоню на внутренний номер, 32 секунды, стоимость 10");
+            //Console.WriteLine("Баланс " + simCard.Balance.Money);
+            //callService.DoCall("88005553535", "88005553536");
+            //Thread.Sleep(32000);
+            //Call call10CostInternal = callRepo.All().SingleOrDefault(x => x._phoneNumberFrom == "88005553535" && x.State == CallState.InProgress);
+            //callService.EndCall(call10CostInternal);
 
-            Console.WriteLine("Звонок окончен.");
-            Console.WriteLine("Стоимость " + call10CostInternal.Cost);
-            Console.WriteLine("Баланс " + simCard.Balance.Money);
+            //Console.WriteLine("Звонок окончен.");
+            //Console.WriteLine("Стоимость " + call10CostInternal.Cost);
+            //Console.WriteLine("Баланс " + simCard.Balance.Money);
 
             // Try external call (10 cost)
             Console.WriteLine("Звоню на внутренний номер, 2 секунды, стоимость 20");
@@ -107,6 +107,15 @@ namespace DomainApp
             Console.WriteLine("Звонок окончен.");
             Console.WriteLine("Стоимость " + callExternalFree.Cost);
             Console.WriteLine("Баланс " + simCard.Balance.Money);
+
+            Console.WriteLine("==============================");
+            Console.WriteLine("Проверка: выставление счета");
+            simCard.Tariff.SetSubscriptionFee(1000);
+
+            Bill bill = new Bill(simCard);
+            bill.SetUpBill();
+            Console.WriteLine("Платить по счету: " + bill.Value);
+
 
             Console.ReadLine();
         }

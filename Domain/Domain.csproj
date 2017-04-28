@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Balance.cs" />
+    <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\Call.cs" />
     <Compile Include="Entities\Tariffs\CallAreas.cs" />
     <Compile Include="Entities\CallStates.cs" />

@@ -1,12 +1,16 @@
-﻿namespace Billing.Domain.Entities.Tariffs
+﻿using System;
+
+namespace Billing.Domain.Entities.Tariffs
 {
     public class Tariff : ITariff
     {
         public readonly string Name;
         public int Id { get; }
+        public int SubscriptionFee { get; protected set; }
+
         public ITarifficationRule TarificationRule { get; set; }
 
-        public Tariff(string name)
+        public Tariff(string name, int subscriptionFee = 0)
         {
             //check name
 
@@ -31,6 +35,14 @@
         public void DeactiviteTariff()
         {
             IsActive = false;
+        }
+
+        public void SetSubscriptionFee(int subscriptionFee)
+        {
+            if (subscriptionFee < 0)
+                throw new InvalidOperationException(" Subscription Fee cannot be negative ");
+
+            SubscriptionFee = subscriptionFee;
         }
 
     }

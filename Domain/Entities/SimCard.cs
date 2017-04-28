@@ -19,7 +19,7 @@ namespace Billing.Domain.Entities
             Balance = new Balance();
         }
 
-        protected readonly IList<Service> _services = new List<Service>();
+        public readonly IList<Service> Services = new List<Service>();
 
         public void SetClient(Client client)
         {
