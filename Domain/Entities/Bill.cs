@@ -26,12 +26,14 @@ namespace Billing.Domain.Entities
             var result = 0;
             foreach (var service in _simCard.Services)
             {
-                if (service.To == service.From)
+                var serviceTo = (service.From == null) ? DateTime.UtcNow : service.From;
+
+                if (serviceTo == service.From)
                 {
                     result += service.CostOnDay;
                     continue;
                 }
-                result += service.CostOnDay * (service.To - service.From).Value.Days;
+                result += service.CostOnDay * (serviceTo - service.From).Value.Days;
             }
 
             return result;

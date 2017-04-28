@@ -50,7 +50,9 @@ namespace Billing.Domain.Entities
 
         public void AddService(Service service)
         {
+            //check service null
 
+            Services.Add(service);
         }
 
         public void RemoveService(Service service)

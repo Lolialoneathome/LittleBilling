@@ -27,5 +27,10 @@ namespace Billing.Domain.Services
             simCard.SetClient(client);
         }
 
+        public void AddService(SimCard simCard, Service service)
+        {
+
+        }
+
     }
 }

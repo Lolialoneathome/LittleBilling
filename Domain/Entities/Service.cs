@@ -8,7 +8,7 @@ namespace Billing.Domain.Entities
         public readonly string Name;
         public int CostOnDay { get; protected set; }
 
-        protected internal Service(string name)
+        public Service(string name)
         {
             //check empty name
 

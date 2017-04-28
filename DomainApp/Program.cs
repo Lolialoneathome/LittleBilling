@@ -112,6 +112,12 @@ namespace DomainApp
             Console.WriteLine("Проверка: выставление счета");
             simCard.Tariff.SetSubscriptionFee(1000);
 
+            Service myService = new Service("MyService");
+            myService.ChangeCost(30);
+            myService.Activate();
+
+            simCard.AddService(myService);
+
             Bill bill = new Bill(simCard);
             bill.SetUpBill();
             Console.WriteLine("Платить по счету: " + bill.Value);
